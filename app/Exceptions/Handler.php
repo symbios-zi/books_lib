@@ -3,7 +3,10 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +49,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof ModelNotFoundException)
+        {
+            throw new HttpResponseException(
+                response()->json([
+                    'success' => false,
+                    'message' => 'Resource not found.'
+                ],JsonResponse::HTTP_BAD_REQUEST)
+            );
+        }
+
         return parent::render($request, $exception);
     }
 }

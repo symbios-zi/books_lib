@@ -2,14 +2,27 @@
 
 namespace App;
 
+use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed id
+ */
 class Book extends Model
 {
+    use Filterable;
 
+    protected $fillable = [
+        'title', 'year', 'isbn'
+    ];
 
     public function author()
     {
-        $this->belongsTo(Author::class);
+        return $this->belongsTo(Author::class);
+    }
+
+    public function add($fields)
+    {
+
     }
 }
