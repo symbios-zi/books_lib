@@ -8,16 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property mixed id
  */
-class Book extends Model
+class Cd extends Model
 {
     use Filterable;
 
     protected $fillable = [
-        'title', 'year', 'isbn', 'cover'
+        'title', 'year', 'cover'
     ];
 
     public function author()
     {
         return $this->belongsTo(Author::class);
     }
+
 }

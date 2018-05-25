@@ -16,12 +16,25 @@ class BookService
     private $bookModel;
 
     /**
+     * @var LoggerService
+     */
+    private $loggerService;
+    /**
+     * @var Author
+     */
+    private $authorModel;
+
+    /**
      * BookService constructor.
      * @param Book $bookModel
+     * @param LoggerService $loggerService
+     * @param Author $authorModel
      */
-    public function __construct(Book $bookModel)
+    public function __construct(Book $bookModel, LoggerService $loggerService, Author $authorModel)
     {
         $this->bookModel = $bookModel;
+        $this->loggerService = $loggerService;
+        $this->authorModel = $authorModel;
     }
 
     /**
@@ -42,12 +55,15 @@ class BookService
      */
     public function add($fields): Book
     {
-        $author = Author::firstOrCreate(['name' => $fields['author_name']]);
+        $author = $this->authorModel->firstOrCreate(['name' => $fields['author_name']]);
+
 
         $book = new Book();
         $book->fill($fields);
         $book->author()->associate($author);
         $book->save();
+
+        $this->loggerService->logSuccess($book, $author);
 
         return $book;
     }
