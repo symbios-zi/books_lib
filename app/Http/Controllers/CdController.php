@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\CdService;
 use Illuminate\Http\JsonResponse;
-use App\Http\Requests\CdAddRequest;
+use App\Http\Requests\ScannerRequest;
 use App\Services\FiltersService\CdsFilters;
 
 class CdController extends Controller

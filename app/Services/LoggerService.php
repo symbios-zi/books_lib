@@ -28,9 +28,49 @@ class LoggerService
      */
     public function logSuccess($item, $author): void
     {
-        $itemType = get_class($item);
+        $itemType = $this->generateItemCode($item);
 
-        $this->logger->channel('scan')->info("success|type:$itemType|id:$item->id|author:$author->id");
+        $this->logger
+            ->channel('scan')
+            ->info("success|type:$itemType|id:$item->id|author:$author->id");
+    }
+
+    /**
+     * Log
+     * @param array $errors
+     */
+    public function logError(array $errors): void
+    {
+        $formattedErrors = $this->formatErrors($errors);
+
+        $this->logger
+            ->channel('scan')
+            ->error($formattedErrors);
+    }
+
+    /**
+     * @param $item
+     * @return string
+     */
+    private function generateItemCode($item): string
+    {
+        return strtolower((new \ReflectionClass($item))->getShortName());
+    }
+
+    /**
+     * @param $errors
+     * @return string
+     */
+    private function formatErrors($errors): string
+    {
+        $formatted = "";
+        foreach($errors as $parameter => $errorsList) {
+            foreach ($errorsList as $message) {
+                $formatted .= "$message|";
+            }
+        }
+
+        return $formatted;
     }
 
 }

@@ -57,7 +57,6 @@ class BookService
     {
         $author = $this->authorModel->firstOrCreate(['name' => $fields['author_name']]);
 
-
         $book = new Book();
         $book->fill($fields);
         $book->author()->associate($author);

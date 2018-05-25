@@ -2,14 +2,30 @@
 
 namespace App\Http\Requests;
 
+use App\Services\LoggerService;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\JsonResponse;
 
-class BookAddRequest extends FormRequest
+class ScannerRequest extends FormRequest
 {
+    /**
+     * @var LoggerService
+     */
+    private $loggerService;
+
+    /**
+     * ScannerRequest constructor.
+     * @param LoggerService $loggerService
+     */
+    public function __construct(LoggerService $loggerService)
+    {
+        $this->loggerService = $loggerService;
+    }
+
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -28,13 +44,17 @@ class BookAddRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required'
+            'cover' => 'url',
+            'title' => 'required|string',
+            'year' => 'date_format:Y'
         ];
     }
 
     protected function failedValidation(Validator $validator)
     {
         $errors = (new ValidationException($validator))->errors();
+        $this->loggerService->logError($errors);
+
 
         throw new HttpResponseException(
             response()->json(
@@ -43,5 +63,6 @@ class BookAddRequest extends FormRequest
                     'errors' => $errors
                 ],JsonResponse::HTTP_BAD_REQUEST)
         );
+
     }
 }

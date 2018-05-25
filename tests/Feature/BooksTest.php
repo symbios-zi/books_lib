@@ -20,7 +20,7 @@ class BooksTest extends TestCase
 
     public function testCreatingBook()
     {
-        $response = $this->json('POST', '/api/v1/books', [
+        $response = $this->json('POST', '/api/v1/scan', [
             'title' => 'Super test book',
             'year' => '1984',
             'isbn' => '123013123813',

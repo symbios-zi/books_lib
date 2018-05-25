@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ScannerRequest;
 use App\Services\BookService;
 use App\Services\CdService;
 use Illuminate\Http\JsonResponse;
@@ -28,7 +29,7 @@ class ScannerController extends Controller
         $this->cdService = $cdService;
     }
     
-    public function store(Request $request): JsonResponse
+    public function store(ScannerRequest $request): JsonResponse
     {
         $createdItem = $this->createDependOnCondition($request);
 

@@ -19,7 +19,7 @@ class CdsTest extends TestCase
 
     public function testCreatingBook()
     {
-        $response = $this->json('POST', '/api/v1/cds', [
+        $response = $this->json('POST', '/api/v1/scan', [
             'title' => 'Super test cd',
             'year' => '1984',
             'author_name' => 'Anton Vorontsov'
