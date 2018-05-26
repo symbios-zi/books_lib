@@ -4,10 +4,9 @@
 cp ../.env.example ../.env
 cp ../.env.example ./.env
 
-docker-compose up --build
+docker-compose up -d --build
 
-docker-compose exec app composer install
-
+composer install -d=../
 
 #migrate tables
 docker-compose exec app php artisan migrate
