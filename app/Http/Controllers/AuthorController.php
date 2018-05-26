@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
-
     /**
      * @var AuthorService
      */
@@ -27,7 +26,7 @@ class AuthorController extends Controller
 
     public function average(Request $request)
     {
-        $authorName = $request->get('name');
+        $authorName = $request->get('author_full_name');
 
         $years = $this->authorService->collectAverageByYearFor($authorName);
 

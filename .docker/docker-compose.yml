@@ -11,6 +11,12 @@ services:
       - "8080:80"
     links:
       - app
+  composer:
+    restart: 'no'
+    image: composer/composer:php7
+    command: install
+    volumes:
+      - ../:/var/www
   app:
     build:
       context: ./
