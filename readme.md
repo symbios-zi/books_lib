@@ -2,12 +2,8 @@
 
 ### SETUP
 To setup infrastructure you should follow step described below: <br>
-1. copy environment```cp env-example to .env```
-2. Change dir to .docker ```cd .docker```
-3. Run command ```docker-compose up -d```
-4. Connect to app console container using ```docker-compose exec app bash```
-5. Run migrations ```php artisan migrate```
-6. Seed Database with sample data ```php artisan db:seed --class=AuthorSeed```
+1. Change dir to .docker ```cd .docker```
+2. Run command ```chmod +x``` and after ```./setup.sh```
 
 ### TESTS
 To start tests u should run command ```./vendor/bin/phpunit``` inside app container
