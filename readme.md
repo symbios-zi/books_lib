@@ -14,10 +14,10 @@ To start tests u should run command ```./vendor/bin/phpunit``` inside app contai
 
 ### API
 
-[POST] /api/v1/scan <br>
-[GET]  /api/v1/books - accept parameters: from_year, to_year, author_full_name <br>
-[GET]  /api/v1/cds   - accept parameters: from_year, to_year, author_full_name <br>
-[GET]  /v1/authors/average - accepts parameter: author_full_name <br>
+[POST] ```/api/v1/scan``` <br>
+[GET]  ```/api/v1/books```        - accept parameters: from_year, to_year, author_full_name <br>
+[GET]  ```/api/v1/cds```          - accept parameters: from_year, to_year, author_full_name <br>
+[GET]  ```/v1/authors/average```  - accepts parameter: author_full_name <br>
 
-###LOGS
+### LOGS
 All operations of storing data will be logged into file storage/logs/scan.log
