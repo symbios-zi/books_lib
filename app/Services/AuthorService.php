@@ -64,11 +64,12 @@ class AuthorService
     {
         $years = new Collection();
 
+        $rate = [
+            'name' => $name,
+            'average' => $average
+        ];
+
         foreach ($yearsList as $yearItem) {
-            $rate = [
-                'name' => $name,
-                'average' => $average
-            ];
             $years->put($yearItem->name, $rate);
         }
 
