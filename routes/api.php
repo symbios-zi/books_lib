@@ -15,12 +15,8 @@ use Illuminate\Http\Request;
 Route::prefix('v1')->group(function () {
 
     Route::post('/scan', 'ScannerController@store');
-
-
     Route::get('/books', 'BookController@index');
-
     Route::get('/cds', 'CdController@index');
-
     Route::get('/authors/average', 'AuthorController@average');
 
 });

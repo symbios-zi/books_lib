@@ -55,7 +55,7 @@ class Handler extends ExceptionHandler
                 response()->json([
                     'success' => false,
                     'message' => 'Resource not found.'
-                ],JsonResponse::HTTP_BAD_REQUEST)
+                ],JsonResponse::HTTP_NOT_FOUND)
             );
         }
 
