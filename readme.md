@@ -9,13 +9,15 @@ To setup infrastructure you should follow step described below: <br>
 3. Go to dir **.docker** ```cd .docker``` and run ```docker-compose up -d```
 4. Run `docker-compose exec app php artisan migrate`
 5. Run `docker-compose exec app php artisan db:seed --class="AuthorSeeder"`
-
+6. Run `chmod -R 777 storage` in app directory to allow write logs. 
 
 ### TESTS
 To start tests u should run command ```./vendor/bin/phpunit``` inside **app** container <br>
 You can connect to this container using command ```docker-compose exec app bash```
 
 ### API
+
+The url of app is `http://localhost:8080/`
 
 [POST] ```/api/v1/scan``` <br>
 [GET]  ```/api/v1/books```        - accept parameters: from_year, to_year, author_full_name <br>
@@ -24,3 +26,7 @@ You can connect to this container using command ```docker-compose exec app bash`
 
 ### LOGS
 All operations of storing data will be logged into file storage/logs/scan.log
+
+### UML
+
+![Alt text](uml.jpg?raw=true "Title")
