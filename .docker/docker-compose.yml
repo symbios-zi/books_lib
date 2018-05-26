@@ -25,13 +25,11 @@ services:
   db:
     image: mysql:5.7
     restart: always
-    env_file:
-        - ".env"
     environment:
-      - MYSQL_DATABASE=${DB_DATABASE}
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-      - MYSQL_USER=${DB_USERNAME}
-      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=books
+      - MYSQL_ROOT_PASSWORD=books
+      - MYSQL_USER=books
+      - MYSQL_PASSWORD=books
     ports:
         - "13306:3306"
     volumes:

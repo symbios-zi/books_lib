@@ -1,12 +1,19 @@
 # Simple library API
 
+
+
 ### SETUP
 To setup infrastructure you should follow step described below: <br>
-1. Change dir to .docker ```cd .docker```
-2. Run command ```chmod +x``` and after ```./setup.sh```
+1. Run ```composer install``` in the application dir
+2. Copy .env.example to .env
+3. Go to dir **.docker** ```cd .docker``` and run ```docker-compose up -d```
+4. Run `docker-compose exec app php artisan migrate`
+5. Run `docker-compose exec app php artisan db:seed --class="AuthorSeeder"`
+
 
 ### TESTS
-To start tests u should run command ```./vendor/bin/phpunit``` inside app container
+To start tests u should run command ```./vendor/bin/phpunit``` inside **app** container <br>
+You can connect to this container using command ```docker-compose exec app bash```
 
 ### API
 
