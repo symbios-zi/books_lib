@@ -46,7 +46,8 @@ class ScannerRequest extends FormRequest
         return [
             'cover' => 'url',
             'title' => 'required|string',
-            'year' => 'date_format:Y'
+            'year' => 'date_format:Y',
+            'author_name' => 'required|string'
         ];
     }
 

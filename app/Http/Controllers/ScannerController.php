@@ -28,15 +28,27 @@ class ScannerController extends Controller
         $this->bookService = $bookService;
         $this->cdService = $cdService;
     }
-    
+
+    /**
+     * @param ScannerRequest $request
+     * @return JsonResponse
+     */
     public function store(ScannerRequest $request): JsonResponse
     {
-        $createdItem = $this->createDependOnCondition($request);
+        try {
+            $createdItem = $this->createDependOnCondition($request);
 
-        return new JsonResponse([
-            'id' => $createdItem->id,
-            'success' => true
-        ], 201);
+            return new JsonResponse([
+                'id' => $createdItem->id,
+                'success' => true
+            ], 201);
+        } catch (\Exception $exception) {
+            
+            return new JsonResponse([
+                'success' => false,
+                'message' => $exception->getMessage()
+            ], JsonResponse::HTTP_BAD_REQUEST);
+        }
     }
 
     /**
